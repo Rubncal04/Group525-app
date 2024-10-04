@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "bundle exec rails db:migrate && bundle exec rails db:seed && bundle exec rails s -b 0.0.0.0"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=mysql2://user:groupapp@db:3306/groupapp_development
+    ports:
+      - "4563:3000"
+    volumes:
+      - .:/usr/src/app
+
+  db:
+    image: mysql:8.2
+    volumes:
+      - mydbdata:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=groupapp_development
+      - MYSQL_USER=user
+      - MYSQL_ROOT_PASSWORD=groupapp
+    ports:
+     - "3306:3306"
+volumes:
+  mydbdata:

@@ -1,0 +1,22 @@
+<div class="container">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <%= image_tag("my-logo.jpg", class: "img-fluid", size: "40x40") %>
+      Group 5 25
+    </a>
+  </nav><br>
+  <h1>Contacts</h1>
+  <div class="mb-3 d-flex justify-content-end">
+    <%= link_to 'Add New Contact', new_contact_path, class: "btn btn-outline-success" %>
+  </div>
+  <% @contacts_by_city.each do |city_name, contacts| %>
+    <div class="row">
+      <div class="col-12">
+        <h3><%= city_name %> (<%= contacts.count %>)</h3>
+        <div class="row">
+          <%= render partial: "contact", collection: contacts, as: :contact %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

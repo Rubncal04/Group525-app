@@ -62,7 +62,7 @@ cities_by_state = {
 col_states.each do |state|
   if cities_by_state.key?(state.name)
     cities_by_state[state.name].each do |city_name|
-      City.create(name: city_name, state_id: state.id)
+      City.find_or_create_by(name: city_name, state_id: state.id)
     end
   end
 end

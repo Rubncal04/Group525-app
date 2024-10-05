@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <%=link_to "Contacts", @contact, :class =>"btn btn-outline-primary me-md-2"%>  
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%=form_with model: @contact do |f|%>
+        <%=f.label :name%><br>
+        <%=f.text_field :name, class: 'form-control'%>
+        <%=f.label :last_name%><br>
+        <%=f.text_field :last_name, class: 'form-control'%><br>
+        <%=f.label :address%><br>
+        <%=f.text_field :address, class: 'form-control'%><br>
+        <%=f.label :email%><br>
+        <%=f.email_field :email, class: 'form-control'%><br>
+        <%=f.label :birthday%><br>
+        <%=f.date_field :birthday, class: 'form-control'%><br>
+        <%=f.label :gender%><br>
+        <%=f.text_field :gender, class: 'form-control'%><br>
+        <%=f.label :city%><br>
+        <%=f.select :city, [["Berlin", "BE"], ["Chicago", "CHI"], ["Madrid", "MD"]], class: 'form-control'%>
+        <%=f.submit "Save", :class =>"btn btn-outline-primary"%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

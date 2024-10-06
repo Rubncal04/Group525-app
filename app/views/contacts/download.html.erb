@@ -1,0 +1,29 @@
+<h1>Contact List Grouped by City</h1>
+
+<% @contacts.each do |city_name, contacts| %>
+  <h2>City: <%= city_name %></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Birthday</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.first_name %></td>
+          <td><%= contact.last_name %></td>
+          <td><%= contact.email %></td>
+          <td><%= contact.address %></td>
+          <td><%= contact.date_of_birth.strftime('%m-%d-%Y') %></td>
+          <td><%= contact.gender %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

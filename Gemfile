@@ -10,6 +10,8 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "bootstrap"
 gem "sassc-rails"
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 

@@ -2,7 +2,7 @@ class ContactsController < ApplicationController
   # before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   def index
-    @contacts_by_city = Contact.joins(:city).select("contacts.*, cities.name as city_name").group_by(&:city_name)
+    @contacts_by_city = get_index_contacts
   end
 
   def new
@@ -35,6 +35,17 @@ class ContactsController < ApplicationController
     end
   end
 
+  def download_file
+    @contacts = get_index_contacts
+
+    pdf = WickedPdf.new.pdf_from_string(
+      render_to_string('download', layout: false))
+    send_data(pdf,
+      filename: 'contacts-by-city.pdf',
+      type: 'application/pdf',
+      disposition: 'attachment')
+  end
+
   private
   def set_contact
     @image = Contact.find params[:id]
@@ -44,4 +55,9 @@ class ContactsController < ApplicationController
     params.require(:contact).permit :first_name, :last_name, :email,
     :city_id, :address, :date_of_birth, :gender, :country_id, :state_id
   end
+
+  def get_index_contacts
+    Contact.joins(:city).select("contacts.*, cities.name as city_name").group_by(&:city_name)
+  end
+  
 end

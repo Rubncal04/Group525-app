@@ -9,6 +9,9 @@
   <div class="mb-3 d-flex justify-content-end">
     <%= link_to 'Add New Contact', new_contact_path, class: "btn btn-outline-success" %>
   </div>
+  <div class="mb-3 d-flex justify-content-end">
+    <%= link_to 'Download PDF', download_file_contacts_url, :target => '_blank', class: 'btn btn-outline-success' %>
+  </div>
   <% @contacts_by_city.each do |city_name, contacts| %>
     <div class="row">
       <div class="col-12">

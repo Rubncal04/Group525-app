@@ -1,15 +1,15 @@
 <div class="col-md-4">
   <div class="card mb-4">
     <div class="card-body">
-      <h5 class="card-title"><%= contact.name %> <%= contact.last_name %></h5>
+      <h5 class="card-title"><%= contact.first_name %> <%= contact.last_name %></h5>
       <p class="card-text">
         <strong>Email:</strong> <%= contact.email %><br>
-        <strong>Dirección:</strong> <%= contact.address %><br>
-        <strong>Fecha de nacimiento:</strong> <%= contact.birthday %><br>
-        <strong>Género:</strong> <%= contact.gender %><br>
+        <strong>Address:</strong> <%= contact.address %><br>
+        <strong>Date of birth:</strong> <%= contact.date_of_birth %><br>
+        <strong>Gender:</strong> <%= contact.gender %><br>
       </p>
-      <%= link_to 'Edit', edit_contact_path(contact), class: 'btn btn-primary' %>
-      <%= link_to 'Delete', contact, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <%= link_to 'Edit', edit_contact_path(contact), class: 'btn btn-outline-success' %>
+      <%= link_to 'Delete', contact, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
     </div>
   </div>
 </div>

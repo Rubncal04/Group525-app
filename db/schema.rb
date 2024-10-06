@@ -20,17 +20,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_04_194156) do
   end
 
   create_table "contacts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "country_id", null: false
+    t.bigint "state_id", null: false
     t.bigint "city_id", null: false
-    t.string "name", null: false
+    t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.string "birthday"
+    t.date "date_of_birth", null: false
     t.string "gender"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_contacts_on_city_id"
+    t.index ["country_id"], name: "index_contacts_on_country_id"
     t.index ["email"], name: "index_contacts_on_email", unique: true
+    t.index ["state_id"], name: "index_contacts_on_state_id"
   end
 
   create_table "countries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -49,5 +53,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_04_194156) do
 
   add_foreign_key "cities", "states"
   add_foreign_key "contacts", "cities"
+  add_foreign_key "contacts", "countries"
+  add_foreign_key "contacts", "states"
   add_foreign_key "states", "countries"
 end

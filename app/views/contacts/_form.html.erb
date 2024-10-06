@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <%=link_to "Contacts", @contact, :class =>"btn btn-outline-success me-md-2"%>  
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 d-md-flex justify-content-md-center">
+      <div class="form-group">
+        <%=form_with model: @contact, local: true do |f|%>
+          <div class="row">
+            <div class="col-6">
+              <%=f.label :first_name%><br>
+              <%=f.text_field :first_name, class: 'form-control'%>
+            </div>
+            <div class="col-6">
+              <%=f.label :last_name%><br>
+              <%=f.text_field :last_name, class: 'form-control'%><br>
+            </div>
+            <div class="col-6">
+              <%=f.label :address%><br>
+              <%=f.text_field :address, class: 'form-control'%><br>
+            </div>
+            <div class="col-6">
+              <%=f.label :email%><br>
+              <%=f.email_field :email, class: 'form-control'%><br>
+            </div>
+            <div class="col-6">
+              <%= f.label :date_of_birth %><br>
+              <%= f.date_field :date_of_birth, class: 'form-control' %><br>
+            </div>
+            <div class="form-group col-6">
+              <%= f.label :gender %><br>
+              <%= f.select :gender, Contact.genders.keys.map { |k| [k.humanize, k] }, { prompt: 'Choose your gender' }, class: 'form-control' %>
+            </div>
+            <div class="form-group col-6">
+              <%= f.label :country_id, "Country" %><br>
+              <%= f.select :country_id, options_from_collection_for_select(Country.all, :id, :name), { prompt: 'Choose your country' }, { id: 'country-select', class: 'form-control' } %><br>
+            </div>
+
+            <div class="form-group col-6">
+              <%= f.label :state_id, "State" %><br>
+              <%= f.select :state_id, [], { prompt: 'Choose your state' }, { id: 'state-select', class: 'form-control', disabled: true } %><br>
+            </div>
+
+            <div class="form-group col-6">
+              <%= f.label :city_id, "City" %><br>
+              <%= f.select :city_id, [], { prompt: 'Choose your city' }, { id: 'city-select', class: 'form-control', disabled: true } %><br>
+            </div>
+            <div class="d-md-flex justify-content-md-right mt-4">
+              <%=f.submit "Save", :class =>"btn btn-outline-success mt-2"%>
+            </div>
+          </div>
+          <% if @contact.errors.any? %>
+            <div class="alert alert-danger">
+              <h4><%= pluralize(@contact.errors.count, "Error") %> saving contact:</h4>
+              <ul>
+                <% @contact.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

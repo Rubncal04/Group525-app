@@ -17,6 +17,10 @@ class ContactsController < ApplicationController
 
   def index
     @contacts_by_city = get_index_contacts
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @contacts_by_city }
+    end
   end
 
   def new

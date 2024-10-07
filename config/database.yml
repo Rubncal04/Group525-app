@@ -20,7 +20,7 @@ development:
   <<: *default
   database: groupapp_development
   username: <%= ENV["MYSQL_USER"] %>
-  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
 
 test:
   <<: *default

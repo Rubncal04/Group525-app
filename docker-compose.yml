@@ -20,6 +20,7 @@ services:
     environment:
       - MYSQL_DATABASE=groupapp_development
       - MYSQL_USER=user
+      - MYSQL_PASSWORD=groupapp
       - MYSQL_ROOT_PASSWORD=groupapp
     ports:
      - "3306:3306"

@@ -1,14 +1,5 @@
 class ContactsController < ApplicationController
-  # before_action :set_contact, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @contacts_by_city = get_index_contacts
-  end
-
-  def new
-    @contact = Contact.new
-    @countries = Country.all.order(:name)
-  end
+  before_action :set_contact, only: [:edit, :update, :show]
 
   def get_states
     @states = State.where(country_id: params[:country_id])
@@ -24,14 +15,38 @@ class ContactsController < ApplicationController
     end
   end
 
+  def index
+    @contacts_by_city = get_index_contacts
+  end
+
+  def new
+    @contact = Contact.new
+    @countries = Country.all.order(:name)
+  end
+
   def create
     @contact = Contact.new contact_params
 
     if @contact.save
-      redirect_to contacts_url, notice: "Contact successfully created."
+      redirect_to root_path, notice: "Contact successfully created."
     else
       flash.now[:alert] = "There was an error saving the contact."
-      render action: :new
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def show
+  end
+
+  def update
+    if @contact.update contact_params
+      redirect_to root_path, notice: "Contact successfully updated."
+    else
+      flash.now[:alert] = "There was an error saving the contact."
+      render :edit
     end
   end
 
@@ -48,7 +63,7 @@ class ContactsController < ApplicationController
 
   private
   def set_contact
-    @image = Contact.find params[:id]
+    @contact = Contact.find params[:id]
   end
 
   def contact_params
@@ -59,5 +74,4 @@ class ContactsController < ApplicationController
   def get_index_contacts
     Contact.joins(:city).select("contacts.*, cities.name as city_name").group_by(&:city_name)
   end
-  
 end

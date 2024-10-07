@@ -5,8 +5,8 @@ class Contact < ApplicationRecord
 
   enum gender: { Male: "M", Female: "F" }
 
-  before_validation :is_older_than_eighteen
-  before_validation :three_contacts_by_city
+  before_create :is_older_than_eighteen
+  before_create :three_contacts_by_city
 
   validates :email, presence: true, uniqueness: true
   validates :date_of_birth, :first_name, :last_name, presence: true

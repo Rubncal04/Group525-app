@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :contacts do
+  root to: 'contacts#index'
+
+  resources :contacts, except: [:index] do
     collection do
       get :get_states
       get :get_cities

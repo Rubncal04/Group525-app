@@ -9,7 +9,7 @@
         <strong>Gender:</strong> <%= contact.gender %><br>
       </p>
       <%= link_to 'Edit', edit_contact_path(contact), class: 'btn btn-outline-success' %>
-      <%= link_to 'Delete', contact, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+      <%= link_to 'Delete', contact_path(contact), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-outline-danger' %>
     </div>
   </div>
 </div>

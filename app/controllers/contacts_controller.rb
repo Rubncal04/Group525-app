@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:edit, :update, :show]
+  before_action :set_contact, only: [:edit, :update, :show, :destroy]
 
   def get_states
     @states = State.where(country_id: params[:country_id])
@@ -48,6 +48,13 @@ class ContactsController < ApplicationController
       flash.now[:alert] = "There was an error saving the contact."
       render :edit
     end
+  end
+
+  def destroy
+    @contact.destroy
+    redirect_to root_path, notice: "Contact successfully deleted."
+  rescue StandardError => e
+    redirect_to root_path, alert: "There was an error deleting the contact."
   end
 
   def download_file

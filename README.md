@@ -112,6 +112,5 @@ Puedes descargar el proyecto desde el siguiente enlace:
 
   ### Notas
   - Asegúrate de reemplazar `<NOMBRE_DEL_DIRECTORIO_DEL_PROYECTO>` con la URL real de tu repositorio y el nombre del directorio donde se encuentra tu proyecto, respectivamente.
-  - Puedes ajustar la documentación según los detalles específicos de tu proyecto o añadir cualquier otra sección que consideres necesaria.
 
 
